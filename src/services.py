@@ -13,11 +13,11 @@ def investment_bank(month: str, transactions: List[Dict[str, Any]], limit: int):
 
     operations = []
     for transaction in transactions:
-        date_excel = transaction["Дата_операции"]
+        date_excel = transaction["Дата операции"]
         operation_data = datetime.datetime.strptime(date_excel, "%d.%m.%Y %H:%M:%S")
         format_date = operation_data.strftime("%Y-%m-%d %H:%M:%S")
-        transaction["Дата_операции"] = format_date
-        if month in transaction["Дата_операции"]:
+        transaction["Дата операции"] = format_date
+        if month in transaction["Дата операции"]:
             operations.append(transaction)
     # print(operations)
     total_investment = 0

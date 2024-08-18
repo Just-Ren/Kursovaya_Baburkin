@@ -25,7 +25,7 @@ logger.addHandler(file_handler)
 
 def read_excel(path_to_file: Path) -> list:
     """Функция чтения транзакций из excel-файла"""
-    with open(path_to_file, "r", encoding="utf-8") as excel_file:
+    with open(path_to_file, "r", encoding="utf-8") :
         try:
             df = pd.read_excel(path_to_file, dtype="object")  # очищаем числовые значения от ненужной информации
             # pd.read_excel("file", dtype="object")

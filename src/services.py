@@ -31,9 +31,7 @@ def investment_bank(month: str, transactions: List[Dict[str, Any]], limit: int):
         total_investment += investment
         total_investment = round(total_investment, 2)
 
-    print(
-        f"Итого за {month} в инвесткопилку была бы отложена сумма {total_investment} руб."
-    )
+    print(f"Итого за {month} в инвесткопилку была бы отложена сумма {total_investment} руб.")
     return total_investment
 
 

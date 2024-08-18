@@ -1,11 +1,12 @@
-from datetime import datetime
-from src.utils import greeting
-import pytest
-from src.utils import read_excel
 import sys
+from datetime import datetime
 from pathlib import Path
-from src.config import ROOT_PATH
 from unittest.mock import patch
+
+import pytest
+
+from src.config import ROOT_PATH
+from src.utils import greeting, read_excel
 
 
 @pytest.fixture()

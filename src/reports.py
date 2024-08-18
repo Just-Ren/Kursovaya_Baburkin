@@ -1,9 +1,10 @@
-import sys
-from pathlib import Path
-import pandas as pd
-from datetime import datetime, timedelta
-import pandas as pd
 import logging
+import sys
+from datetime import datetime, timedelta
+from pathlib import Path
+
+import pandas as pd
+
 from src.utils import data_to_df
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
@@ -17,9 +18,7 @@ file_handler.setFormatter(file_formatted)
 logger.addHandler(file_handler)
 
 
-def spending_by_category(
-    transactions: pd.DataFrame, category: str, date: [str] = None
-) -> pd.DataFrame:
+def spending_by_category(transactions: pd.DataFrame, category: str, date: [str] = None) -> pd.DataFrame:
     # """Функция-отчет по транзакциям в указанной категории"""
     df = transactions
     date = pd.to_datetime("31.07.2021")  #'2021-07-31'
@@ -31,8 +30,7 @@ def spending_by_category(
 
     # Фильтруем датафрейм по дате
     filtered_df = df[
-        (pd.to_datetime(df["Дата операции"]) >= start_date)
-        & (pd.to_datetime(df["Дата операции"]) <= date)
+        (pd.to_datetime(df["Дата операции"]) >= start_date) & (pd.to_datetime(df["Дата операции"]) <= date)
     ]
 
     # рассчитываем сумму расходов по каждой категории

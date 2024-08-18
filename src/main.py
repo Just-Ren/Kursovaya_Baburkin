@@ -3,16 +3,17 @@ from pathlib import Path
 
 from src.config import ROOT_PATH
 
-sys.path.append(str(Path(__file__).resolve().parent.parent))
+
 import json
 import logging
-import sys
 from pathlib import Path
-from src.views import price_stocks, currency_rate, filtered_operations
-from src.utils import read_excel, data_to_df
-from src.services import investment_bank
-from src.utils import greeting
+
+
 from src.reports import spending_by_category
+from src.services import investment_bank
+from src.utils import data_to_df, greeting, read_excel
+from src.views import currency_rate, filtered_operations, price_stocks
+sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 path_to_file = Path(ROOT_PATH, "../data/operations.xlsx")
 
@@ -70,9 +71,7 @@ def main():
             # Запрашиваем месяц
             while True:
                 month_choice = int(
-                    input(
-                        f"Для расчета возьмём 2021 год. Введите порядковый номер месяца от 1 до 12: "
-                    )
+                    input(f"Для расчета возьмём 2021 год. Введите порядковый номер месяца от 1 до 12: ")
                 )
                 if 0 < month_choice < 10:
                     month = "2021-0" + str(month_choice)
@@ -87,7 +86,7 @@ def main():
             logger.info(f"Производим расчет сумм для инвесткопилки")
             # создаем json-строку
             data = {"total_investment": total_investment}
-            json_data = json.dumps((data))
+            json_data = json.dumps(data)
             print(f"Json-ответ: {json_data}")
             # return json_data
         elif es_no == "нет":

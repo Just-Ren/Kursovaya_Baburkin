@@ -1,11 +1,12 @@
+import json
+import logging
 import os
+from datetime import datetime
 from math import nan
 from pathlib import Path
-import json
+
 import requests
 from dotenv import load_dotenv
-import logging
-from datetime import datetime
 
 from src.utils import read_excel
 
@@ -50,16 +51,11 @@ def filtered_operations():
             operations.append(transaction)
             counter_amount += abs(transaction["Сумма операции"])
             # записываем номера карт
-            if (
-                transaction["Номер карты"] not in card_numbers
-                and transaction["Номер карты"] != nan
-            ):
+            if transaction["Номер карты"] not in card_numbers and transaction["Номер карты"] != nan:
                 card_numbers.append(transaction["Номер карты"])
     # print(operations)
     # Отсортируем словарь по величине суммы транзакции в порядке убывания
-    sorted_operations = sorted(
-        operations, key=lambda x: abs(x["Сумма операции"]), reverse=True
-    )
+    sorted_operations = sorted(operations, key=lambda x: abs(x["Сумма операции"]), reverse=True)
 
     # Выберем первые 5 элементов из отсортированного списка
     top_5_transactions = sorted_operations[:5]
@@ -78,9 +74,7 @@ def filtered_operations():
     # рассчитываем кешбэк
     logger.info("Рассчитываем кешбэк")
     cashback = round(counter_amount / 100, 2)
-    print(
-        f"Сумма расходов за июль 2021 года составляет: {round(counter_amount, 2)} руб."
-    )
+    print(f"Сумма расходов за июль 2021 года составляет: {round(counter_amount, 2)} руб.")
     print(f"Сумма кешбэка за июль 2021 года составляет: {cashback} руб.")
     # print(operations)
     return operations
@@ -100,8 +94,10 @@ def currency_rate(currency):
     """функция, которая принимает код валюты и возвращает ее курс на дату 31.07.2021"""
     # currency = "USD"
     amount = 1
-    url = (f"https://api.apilayer.com/exchangerates_data/convert?to={"RUB"}&from={currency}"
-           f"&amount={amount}&date=2021-07-31")
+    url = (
+        f"https://api.apilayer.com/exchangerates_data/convert?to={"RUB"}&from={currency}"
+        f"&amount={amount}&date=2021-07-31"
+    )
     headers = {"apikey": api_key}
     response = requests.request("GET", url, headers=headers)
     result = response.json()
@@ -110,7 +106,7 @@ def currency_rate(currency):
     to_currency = result["query"]["to"]
     rate = result["info"]["rate"]
     logging.info("Передаю данные о курсе валют")
-    print(f"Дата: {date}; Валюта: {currency}; Курс: {round(rate,2)}")
+    print(f"Дата: {date}; Валюта: {currency}; Курс: {round(rate, 2)}")
     return rate
 
 
@@ -119,12 +115,15 @@ def price_stocks(symbol):
     """Функция, принимающая код акции и возвращающая ее стоимость на дату 01.07.2024"""
     apikey = os.getenv("APIKEY")
     date = "2024-07-01"
-    url = (f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}"
-           f"&outputsize=full&apikey={apikey}")
+    url = (
+        f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}"
+        f"&outputsize=full&apikey={apikey}"
+    )
     # Отправка запроса
     response = requests.get(url)
     data = response.json()
-    url = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=60min&apikey=apikey&month=2024-07&outputsize=1&adjusted=false"
+    url = ("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&"
+           "symbol=IBM&interval=60min&apikey=apikey&month=2024-07&outputsize=1&adjusted=false")
     for day, prices in data["Time Series (Daily)"].items():
         if day == date:
             price = float(prices["1. open"])

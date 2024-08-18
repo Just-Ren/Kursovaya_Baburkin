@@ -1,4 +1,5 @@
 from unittest.mock import patch
+
 from src.views import currency_rate, price_stocks
 
 

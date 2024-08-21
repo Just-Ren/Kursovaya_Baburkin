@@ -1,16 +1,14 @@
+import csv
 import datetime
 import logging
 import sys
-import csv
-
-
 from logging import FileHandler
 from pathlib import Path
 from typing import List
-from src.config import ROOT_PATH
-
 
 import pandas as pd
+
+from src.config import ROOT_PATH
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
@@ -25,7 +23,7 @@ logger.addHandler(file_handler)
 
 def read_excel(path_to_file: Path) -> list:
     """Функция чтения транзакций из excel-файла"""
-    with open(path_to_file, "r", encoding="utf-8") :
+    with open(path_to_file, "r", encoding="utf-8"):
         try:
             df = pd.read_excel(path_to_file, dtype="object")  # очищаем числовые значения от ненужной информации
             # pd.read_excel("file", dtype="object")

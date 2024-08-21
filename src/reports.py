@@ -5,8 +5,8 @@ from pathlib import Path
 
 import pandas as pd
 
-from src.utils import data_to_df
 from src.config import ROOT_PATH
+from src.utils import data_to_df
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
@@ -23,7 +23,7 @@ def spending_by_category(transactions: pd.DataFrame, category: str, date: [str] 
     # """Функция-отчет по транзакциям в указанной категории"""
     df = transactions
     date = pd.to_datetime("31.07.2021")
-    #'2021-07-31'
+    # '2021-07-31'
     # Указываем дату, от которой нужно отобрать последние три месяца
     if date is None:
         date = pd.to_datetime("31.07.2021")
@@ -39,9 +39,7 @@ def spending_by_category(transactions: pd.DataFrame, category: str, date: [str] 
     sum_price_by_category = filtered_df.groupby("Категория")["Сумма операции"].sum()
 
     # выводим сумму расходов в заданной категории
-    print(
-        f"Траты в категории {category} за последние 3 месяца составили {sum_price_by_category[category]} руб."
-    )
+    print(f"Траты в категории {category} за последние 3 месяца составили {sum_price_by_category[category]} руб.")
     logger.info("Выдаю данные по расходам в категории")
     return result
 

@@ -1,18 +1,14 @@
+import json
+import logging
 import sys
 from pathlib import Path
 
 from src.config import ROOT_PATH
-
-
-import json
-import logging
-from pathlib import Path
-
-
 from src.reports import spending_by_category
 from src.services import investment_bank
 from src.utils import data_to_df, greeting, read_excel
 from src.views import currency_rate, filtered_operations, price_stocks
+
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 path_to_file = Path(ROOT_PATH, "../data/operations.xlsx")

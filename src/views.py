@@ -47,7 +47,7 @@ def filtered_operations():
         # operation_data = datetime.strptime(date_excel, "%d.%m.%Y %H:%M:%S")
         # format_date = operation_data.strftime("%Y.%m.%d")
         # transaction["Дата_платежа"] = format_date
-        if "07.2021" in str(transaction["Дата_платежа"]):
+        if "07.2021" in str(transaction["Дата платежа"]):
             operations.append(transaction)
             counter_amount += abs(transaction["Сумма операции"])
             # записываем номера карт
@@ -122,8 +122,10 @@ def price_stocks(symbol):
     # Отправка запроса
     response = requests.get(url)
     data = response.json()
-    url = ("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&"
-           "symbol=IBM&interval=60min&apikey=apikey&month=2024-07&outputsize=1&adjusted=false")
+    url = (
+        "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&"
+        "symbol=IBM&interval=60min&apikey=apikey&month=2024-07&outputsize=1&adjusted=false"
+    )
     for day, prices in data["Time Series (Daily)"].items():
         if day == date:
             price = float(prices["1. open"])

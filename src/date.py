@@ -26,15 +26,15 @@ def limit(user_limit: int) -> int:
 #     while True:
 #         month = int(
 #             input(
-#                 f"Для расчета возьмём 2021 год.
+#                 f"Для расчета возьмём 2022 год.
 #                 Введите порядковый номер месяца от 1 до 12: "
 #             )
 #         )
 #         if 0 < month < 10:
-#             month_choice = "2021-0" + str(month)
+#             month_choice = "2022-0" + str(month)
 #             break
 #         elif 9 < month_choice < 13:
-#             month_choice = "2021-" + str(month)
+#             month_choice = "2022-" + str(month)
 #             break
 #         else:
 #             print("Ошибка. Введите число в диапазоне от 1 до 12.")

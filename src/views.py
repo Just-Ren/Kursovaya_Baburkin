@@ -68,14 +68,14 @@ def filtered_operations():
     print("Топ-5 транзакций:")
     for transaction in result:
         print(transaction)
-    print("В июле 2021 года операции совершались со следующих банковсих карт:")
+    print("В июле 2022 года операции совершались со следующих банковсих карт:")
     for number in card_numbers:
         print(number)
     # рассчитываем кешбэк
     logger.info("Рассчитываем кешбэк")
     cashback = round(counter_amount / 100, 2)
-    print(f"Сумма расходов за июль 2021 года составляет: {round(counter_amount, 2)} руб.")
-    print(f"Сумма кешбэка за июль 2021 года составляет: {cashback} руб.")
+    print(f"Сумма расходов за июль 2022 года составляет: {round(counter_amount, 2)} руб.")
+    print(f"Сумма кешбэка за июль 2022 года составляет: {cashback} руб.")
     # print(operations)
     return operations
 
@@ -91,12 +91,12 @@ def load_user_settings(file_path="src.user_settings.json"):  # Пока не п�
 
 
 def currency_rate(currency):
-    """функция, которая принимает код валюты и возвращает ее курс на дату 31.07.2021"""
+    """функция, которая принимает код валюты и возвращает ее курс на дату 31.07.2022"""
     # currency = "USD"
     amount = 1
     url = (
         f"https://api.apilayer.com/exchangerates_data/convert?to={"RUB"}&from={currency}"
-        f"&amount={amount}&date=2021-07-31"
+        f"&amount={amount}&date=2022-07-31"
     )
     headers = {"apikey": api_key}
     response = requests.request("GET", url, headers=headers)

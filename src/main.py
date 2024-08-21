@@ -67,13 +67,13 @@ def main():
             # Запрашиваем месяц
             while True:
                 month_choice = int(
-                    input(f"Для расчета возьмём 2021 год. Введите порядковый номер месяца от 1 до 12: ")
+                    input(f"Для расчета возьмём 2022 год. Введите порядковый номер месяца от 1 до 12: ")
                 )
                 if 0 < month_choice < 10:
-                    month = "2021-0" + str(month_choice)
+                    month = "2022-0" + str(month_choice)
                     break
                 elif 9 < month_choice < 13:
-                    month = "2021-" + str(month_choice)
+                    month = "2022-" + str(month_choice)
                     break
                 else:
                     print("Ошибка. Введите число в диапазоне от 1 до 12.")

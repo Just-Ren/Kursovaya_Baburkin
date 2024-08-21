@@ -22,11 +22,11 @@ logger.addHandler(file_handler)
 def spending_by_category(transactions: pd.DataFrame, category: str, date: [str] = None) -> pd.DataFrame:
     # """Функция-отчет по транзакциям в указанной категории"""
     df = transactions
-    date = pd.to_datetime("31.07.2021")
+    date = pd.to_datetime("31.07.2022")
     # '2021-07-31'
     # Указываем дату, от которой нужно отобрать последние три месяца
     if date is None:
-        date = pd.to_datetime("31.07.2021")
+        date = pd.to_datetime("31.07.2022")
     # Вычисляем дату начала периода (3 месяца назад)
     start_date = date - pd.Timedelta(days=92)
 

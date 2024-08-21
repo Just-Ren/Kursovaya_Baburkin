@@ -47,7 +47,7 @@ def filtered_operations():
         # operation_data = datetime.strptime(date_excel, "%d.%m.%Y %H:%M:%S")
         # format_date = operation_data.strftime("%Y.%m.%d")
         # transaction["Дата_платежа"] = format_date
-        if "07.2021" in str(transaction["Дата платежа"]):
+        if "07.2022" in str(transaction["Дата платежа"]):
             operations.append(transaction)
             counter_amount += abs(transaction["Сумма операции"])
             # записываем номера карт

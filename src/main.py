@@ -15,7 +15,7 @@ path_to_file = Path(ROOT_PATH, "../data/operations.xlsx")
 
 logger = logging.getLogger("main")
 logger.setLevel(logging.INFO)
-file_handler = logging.FileHandler("../logs/main.log", "w")
+file_handler = logging.FileHandler("logs/main.log", "w")
 file_formatted = logging.Formatter("%(asctime)s-%(name)s-%(levelname)s: %(message)s")
 file_handler.setFormatter(file_formatted)
 logger.addHandler(file_handler)

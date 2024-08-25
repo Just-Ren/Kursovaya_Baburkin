@@ -15,7 +15,7 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 logger = logging.getLogger("utils")
 logger.setLevel(logging.INFO)
-file_handler = logging.FileHandler("logs/utils.log", "w")
+file_handler = logging.FileHandler("C:/users/evgen/PycharmProjects/Kursovaya_Baburkin/logs/utils.log", "w")
 file_formatted = logging.Formatter("%(asctime)s-%(name)s-%(levelname)s: %(message)s")
 file_handler.setFormatter(file_formatted)
 logger.addHandler(file_handler)

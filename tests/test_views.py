@@ -11,7 +11,7 @@ def test_currency_rate(mock_get):
 
 
 
-# курс валют на 2021-07-01
+# курс валют на 2022-07-01
 
 
 def test_price_stocks():

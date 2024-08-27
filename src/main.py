@@ -1,21 +1,24 @@
-import json
-import logging
 import sys
 from pathlib import Path
 
 from src.config import ROOT_PATH
-from src.reports import spending_by_category
+
+import json
+import logging
+import sys
+from pathlib import Path
+from src.views import price_stocks, currency_rate, filtered_operations
+from src.utils import read_excel, data_to_df
 from src.services import investment_bank
-from src.utils import data_to_df, greeting, read_excel
-from src.views import currency_rate, filtered_operations, price_stocks
+from src.utils import greeting
+from src.reports import spending_by_category
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
-
 path_to_file = Path(ROOT_PATH, "../data/operations.xlsx")
 
 logger = logging.getLogger("main")
 logger.setLevel(logging.INFO)
-file_handler = logging.FileHandler("C:/users/evgen/PycharmProjects/Kursovaya_Baburkin/logs/main.log", "w")
+file_handler = logging.FileHandler(filename='logs/main.log', mode='w')
 file_formatted = logging.Formatter("%(asctime)s-%(name)s-%(levelname)s: %(message)s")
 file_handler.setFormatter(file_formatted)
 logger.addHandler(file_handler)
@@ -67,7 +70,9 @@ def main():
             # Запрашиваем месяц
             while True:
                 month_choice = int(
-                    input(f"Для расчета возьмём 2022 год. Введите порядковый номер месяца от 1 до 12: ")
+                    input(
+                        f"Для расчета возьмём 2022 год. Введите порядковый номер месяца от 1 до 12: "
+                    )
                 )
                 if 0 < month_choice < 10:
                     month = "2022-0" + str(month_choice)

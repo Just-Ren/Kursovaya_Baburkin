@@ -1,30 +1,29 @@
-import logging
 import sys
-from datetime import datetime, timedelta
 from pathlib import Path
-
 import pandas as pd
-
-from src.config import ROOT_PATH
+from datetime import datetime, timedelta
+import pandas as pd
+import logging
 from src.utils import data_to_df
+from src.config import ROOT_PATH
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
-
 logger = logging.getLogger("reports")
 logger.setLevel(logging.INFO)
-file_handler = logging.FileHandler("../logs/reports.log", "w")
+file_handler = logging.FileHandler(filename='logs/reports.log', mode='w')
 file_formatted = logging.Formatter("%(asctime)s-%(name)s-%(levelname)s: %(message)s")
 file_handler.setFormatter(file_formatted)
 logger.addHandler(file_handler)
 
 
-def spending_by_category(transactions: pd.DataFrame, category: str, date: [str] = None) -> pd.DataFrame:
+def spending_by_category(
+    transactions: pd.DataFrame, category: str, date: [str] = None
+) -> pd.DataFrame:
     # """Функция-отчет по транзакциям в указанной категории"""
     df = transactions
-    date = pd.to_datetime("31.07.2022")
-    # '2021-07-31'
-    # Указываем дату, от которой нужно отобрать последние три месяца
+    date = pd.to_datetime("31.07.2022")  # '2022-07-31'
+    # # Указываем дату, от которой нужно отобрать последние три месяца
     if date is None:
         date = pd.to_datetime("31.07.2022")
     # Вычисляем дату начала периода (3 месяца назад)
@@ -32,14 +31,16 @@ def spending_by_category(transactions: pd.DataFrame, category: str, date: [str] 
 
     # Фильтруем датафрейм по дате
     filtered_df = df[
-        (pd.to_datetime(df["Дата операции"]) >= start_date) & (pd.to_datetime(df["Дата операции"]) <= date)
+        (pd.to_datetime(df["Дата операции"]) >= start_date)
+        & (pd.to_datetime(df["Дата операции"]) <= date)
     ]
 
     # рассчитываем сумму расходов по каждой категории
     sum_price_by_category = filtered_df.groupby("Категория")["Сумма операции"].sum()
 
     # выводим сумму расходов в заданной категории
-    print(f"Траты в категории {category} за последние 3 месяца составили {sum_price_by_category[category]} руб.")
+    result = print(f"Траты в категории {category} "
+                   f"за последние 3 месяца составили {sum_price_by_category[category]} руб.")
     logger.info("Выдаю данные по расходам в категории")
     return result
 

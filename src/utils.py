@@ -158,7 +158,7 @@ def fetch_stock_prices(stocks: list) -> dict:
 if __name__ == "__main__":
     df_transactions = read_xls_file("../data/operations.xls")
     my_list = df_transactions.to_dict(orient="records")
-    sortirovka = filter_transactions_by_date(df_transactions)
+    sorting = filter_transactions_by_date(df_transactions)
 
     # print(get_top_five_transactions(sortirovka))
 

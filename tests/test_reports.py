@@ -38,6 +38,6 @@ def test_spending_by_category(sample_transactions):
     mock_open_func.assert_called_once_with(os.path.abspath("../data/log_file.json"), "w", encoding="utf-8")
 
 
-# ������ ������
+# Запуск тестов
 if __name__ == "__main__":
     pytest.main()

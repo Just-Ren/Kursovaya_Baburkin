@@ -11,7 +11,7 @@ def test_investment_bank():
         {"Дата операции": "20.07.2024 00:00:00", "Сумма операции": 499},
         {"Дата операции": "01.08.2024 00:00:00", "Сумма операции": 130},
     ]
-    month = "2023-07"
+    month = "2024-07"
     limit = 50
     assert investment_bank(month, transactions, limit) == (38.0 + 15.0 + 1.0)
 
@@ -40,7 +40,7 @@ def test_different_limits():
         {"Дата операции": "15.07.2024 00:00:00", "Сумма операции": 185},
         {"Дата операции": "20.07.2024 00:00:00", "Сумма операции": 499},
     ]
-    month = "2023-07"
+    month = "2024-07"
     assert investment_bank(month, transactions, 10) == (8.0 + 5.0 + 1.0)
     assert investment_bank(month, transactions, 100) == (88.0 + 15.0 + 1.0)
 

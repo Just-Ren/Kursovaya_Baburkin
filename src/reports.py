@@ -20,7 +20,7 @@ def save_to_file_decorator(filename: str = "log_file.json"):
             result = func(*args, **kwargs)
             logger.info("Декоратор записывает полученный результат в файл.")
             full_path = os.path.abspath(filename)
-            with open(full_path, "w", encoding="utf-8f") as file:
+            with open(full_path, "w", encoding="utf-8") as file:
                 json.dump(result, file, ensure_ascii=False, indent=4)
             logger.info("Декоратор успешно завершил свою работу.")
             return result

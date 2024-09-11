@@ -15,7 +15,7 @@ ER_API_KEY = os.getenv("ER_API_KEY")
 def setting_log(name: str) -> logging.Logger:
     """Функция для настройки логера"""
     logger = logging.getLogger(name)
-    file_handler = logging.FileHandler(f"../logs/{name}.log", "w", encoding="utf-8")
+    file_handler = logging.FileHandler(filename=f"logs\\{name}.log", mode="w", encoding="utf-8")
     file_formatter = logging.Formatter("%(asctime)s %(module)s %(funcName)s %(levelname)s: %(message)s")
     file_handler.setFormatter(file_formatter)
     logger.addHandler(file_handler)
@@ -156,7 +156,7 @@ def fetch_stock_prices(stocks: list) -> dict:
 
 
 if __name__ == "__main__":
-    df_transactions = read_xls_file("../data/operations.xls")
+    df_transactions = read_xlsx_file(f"..\\data\\operations.xlsx")
     my_list = df_transactions.to_dict(orient="records")
     sorting = filter_transactions_by_date(df_transactions)
 

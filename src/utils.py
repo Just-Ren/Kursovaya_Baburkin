@@ -15,7 +15,7 @@ ER_API_KEY = os.getenv("ER_API_KEY")
 def setting_log(name: str) -> logging.Logger:
     """Функция для настройки логера"""
     logger = logging.getLogger(name)
-    file_handler = logging.FileHandler(filename=f"logs\\{name}.log", mode="w", encoding="utf-8")
+    file_handler = logging.FileHandler(filename=f"..\\logs\\{name}.log", mode="w", encoding="utf-8")
     file_formatter = logging.Formatter("%(asctime)s %(module)s %(funcName)s %(levelname)s: %(message)s")
     file_handler.setFormatter(file_formatter)
     logger.addHandler(file_handler)

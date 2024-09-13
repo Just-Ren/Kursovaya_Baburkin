@@ -15,13 +15,13 @@ from src.utils import (
 
 logger = setting_log("views")
 
-df_transactions = read_xlsx_file("C:\\Users\\evgen\\PycharmProjects\\Kursovaya_Baburkin\\data\\operations.xlsx")
+df_transactions = read_xlsx_file("..\\data\\operations.xlsx")
 
 
 def generate_json_response(df_transactions: pd.DataFrame, input_date: str):
     """Функция, получения json-запроса для главной страницы"""
     logger.info("Функция начала свою работу.")
-    with open("C:\\Users\\evgen\\PycharmProjects\\Kursovaya_Baburkin\\user_settings.json", "r") as f:
+    with open("..\\user_settings.json", "r") as f:
         user_settings = json.load(f)
     logger.info("Файл успешно открыт")
 

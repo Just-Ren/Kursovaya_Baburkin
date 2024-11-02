@@ -18,6 +18,37 @@
 
 Запуск подсчета инвесткопилки производится через запуск модуля main.py
 
+## Покрытие тестами:
+Заходим в папку ```tests``` и из нее включаем тесты:
+
+```
+cd tests
+```
+```
+pytest --cov
+```
+
+src\__init__.py              0      0   100%
+
+src\config.py                2      0   100%
+
+src\services.py             23      0   100%
+
+src\utils.py                45      8    82%
+
+src\views.py                83     35    58%
+
+tests\__init__.py            0      0   100%
+
+tests\test_services.py      13      0   100%
+
+tests\test_utils.py         19      0   100%
+
+tests\test_views.py          8      0   100%
+
+TOTAL                      193     43    78%
+
+
 ## Использование:
 
 Отработка навыков программирования на языке Python

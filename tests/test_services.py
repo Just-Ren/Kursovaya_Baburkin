@@ -3,57 +3,47 @@ import pytest
 from src.services import investment_bank
 
 
-@pytest.fixture()
-def information():
-    return [
-        {
-            "Дата операции": "01.02.2021 20:27:51",
-            "Дата платежа": "04.02.2021",
-            "Номер карты": "*7197",
-            "Статус": "OK",
-            "Сумма операции": -316,
-            "Валюта операции": "RUB",
-            "Валюта платежа": "RUB",
-            "Кешбэк": 0,
-            "Категория": "Красота",
-            "МСС": 5977,
-            "Описание": "OOO Balid",
-            "Бонусы (включая кешбэк)": 6,
-            "Округление на Инвесткопилку": 0,
-            "Сумма операции с округлением": 316,
-        },
-        {
-            "Дата операции": "01.01.2021 12:49:53",
-            "Дата платежа": "01.01.2021",
-            "Номер карты": 0,
-            "Статус": "OK",
-            "Сумма операции": -3000,
-            "Валюта операции": "RUB",
-            "Валюта платежа": "RUB",
-            "Кешбэк": 0,
-            "Категория": "Переводы",
-            "МСС": 0,
-            "Описание": "Линзомат ТЦ Юность",
-            "Бонусы (включая кешбэк)": 0,
-            "Округление на Инвесткопилку": 0,
-            "Сумма операции с округлением": 3000,
-        },
+def test_investment_bank():
+    """Тестирование функции"""
+    transactions = [
+        {"Дата операции": "10.07.2024 00:00:00", "Сумма операции": 1712},
+        {"Дата операции": "15.07.2024 00:00:00", "Сумма операции": 185},
+        {"Дата операции": "20.07.2024 00:00:00", "Сумма операции": 499},
+        {"Дата операции": "01.08.2024 00:00:00", "Сумма операции": 130},
     ]
+    month = "2024-07"
+    limit = 50
+    assert investment_bank(month, transactions, limit) == (38.0 + 15.0 + 1.0)
 
 
-@pytest.fixture()
-def month():
-    return "2021-02"
+def test_invalid_month_format():
+    """Тестирование функции, когда введен неправильный формат месяца"""
+    transactions = []
+    month = "2024/07"
+    limit = 50
+    with pytest.raises(ValueError):
+        investment_bank(month, transactions, limit)
 
 
-@pytest.fixture()
-def limit():
-    return 100
+def test_no_transactions_in_month():
+    """Тестирование функции, когда нет введенного в функцию месяца в структуре данных"""
+    transactions = [{"Дата операции": "10.08.2024 00:00:00", "Сумма операции": 1712}]
+    month = "2024-07"
+    limit = 50
+    assert investment_bank(month, transactions, limit) == 0.0
 
 
-def test_investment_bank(month, information, limit):
-    assert investment_bank(month, information, limit) == 85
+def test_different_limits():
+    """Тестирование функции с разными лимитами"""
+    transactions = [
+        {"Дата операции": "10.07.2024 00:00:00", "Сумма операции": 1712},
+        {"Дата операции": "15.07.2024 00:00:00", "Сумма операции": 185},
+        {"Дата операции": "20.07.2024 00:00:00", "Сумма операции": 499},
+    ]
+    month = "2024-07"
+    assert investment_bank(month, transactions, 10) == (8.0 + 5.0 + 1.0)
+    assert investment_bank(month, transactions, 100) == (88.0 + 15.0 + 1.0)
 
 
-# def test_investment_bank(month, information, limit):
-#     assert investment_bank(month, [], limit) == 0
+if __name__ == "__main__":
+    pytest.main()
